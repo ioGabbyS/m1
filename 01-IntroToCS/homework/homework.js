@@ -13,7 +13,14 @@ function BinarioADecimal(num) {
 
 function DecimalABinario(num) {
   // tu codigo aca
-  parseInt("111", 2);
+  let a = [];
+  while (num >=2){
+    a.unshift(num %2);
+    num = Math.floor(num / 2);
+}
+a.unshift(num);
+a = a.join("");
+return a
 }
 
 
