@@ -11,31 +11,31 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 x = 1;
 var a = 5;
 var b = 10;
-var c = function(a, b, c) {
+var c = function(a, b, c) { // 8 9 10
   var x = 10;
-  console.log(x);
-  console.log(a);
-  var f = function(a, b, c) {
+  console.log(x); // 10
+  console.log(a); // 8
+  var f = function(a, b, c) { // 6 9 10
     b = a;
-    console.log(b);
+    console.log(b); // 8
     b = c;
     var x = 5;
   }
   f(a,b,c);
-  console.log(b);
+  console.log(b); //9
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b); // 10
+console.log(x); // 1
 ```
 
 ```javascript
 console.log(bar);
-console.log(baz);
+console.log(baz);  // Is not Undefined
 foo();
-function foo() { console.log('Hola!'); }
+function foo() { console.log('Hola!'); } // Hola!
 var bar = 1;
-baz = 2;
+baz = 2; // Undefined
 ```
 
 ```javascript
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor); // Franco
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor); // Tony
 (function() {
    if(true) {
       var instructor = "Franco";
-      console.log(instructor);
+      console.log(instructor); //Franco
    }
 })();
-console.log(instructor);
+console.log(instructor); // Tony Undefined
 ```
 
 ```javascript
@@ -64,33 +64,33 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor); // The flash
+    console.log(pm);  // Reverse Flash
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor);  // the flash
+console.log(pm);  //  Franco
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3"  // 2
+"2" * "3" // 6
+4 + 5 + "px" // 9 px
+"$" + 4 + 5 // $45
+"4" - 2 // 2
+"4px" - 2 // NaN  
+7 / 0 // Infinity
+{}[0] // [0]
+parseInt("09") // 9
+5 && 2 // 2
+2 && 5 // 5
+5 || 0 // 5
+0 || 5 // 5
+[3]+[3]-[10] // 23
+3>2>1 // False
+[] == ![] // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -101,17 +101,7 @@ parseInt("09")
 ¿Cuál es el output o salida en consola luego de ejecutar este código? Explicar por qué:
 
 ```javascript
-function test() {
-   console.log(a);
-   console.log(foo());
-
-   var a = 1;
-   function foo() {
-      return 2;
-   }
-}
-
-test();
+  // Undefined 2 Undefined
 ```
 
 Y el de este código? :
@@ -127,7 +117,7 @@ function getFood(food) {
     return snack;
 }
 
-getFood(false);
+getFood(false); // Undefined
 ```
 
 
@@ -147,11 +137,11 @@ var obj = {
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); // Aurelio de Rosa
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); // Juan Perez  Undefined
 ```
 
 ### Event loop
@@ -160,11 +150,11 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1); // 1
    setTimeout(function() { console.log(2); }, 1000);
    setTimeout(function() { console.log(3); }, 0);
-   console.log(4);
+   console.log(4); // 4
 }
 
-printing();
+printing();  // Undefined 3 2 
 ```
