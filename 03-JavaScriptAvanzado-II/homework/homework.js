@@ -18,7 +18,14 @@ function counter() {
   otroContador()      // 1
   otroContador()      // 2
   otroContador()      // 3
-   */
+
+  */
+  let cuenta = 1;
+  return function () {
+    let aux = cuenta;
+    cuenta++;
+    return aux;
+  };
 }
 
 function cacheFunction(cb) {
@@ -41,8 +48,16 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+  let cache = {};
+  return function (arg) {
+    if (cache.hasOwnProperty(arg)) {
+      return cache[arg];
+    }
+    let aux = cb(arg);
+    cache[arg] = aux;
+    return aux;
+  };
 }
-
 // Bind
 
 var instructor = {
@@ -83,6 +98,10 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
 let textoAsteriscos;
 let textoGuiones;
 let textoUnderscore;
+
+("*hola*");
+("-hola-");
+("_hola_");
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
